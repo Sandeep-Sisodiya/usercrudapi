@@ -16,4 +16,14 @@ class UserServices{
       throw Exception('Failed to load Data');
     }
   }
+
+  static Future<void> addUser(String name,int age) async{
+    final response = await http.post(Uri.parse(baseurl),
+    headers: {"Content-type":"application/json"},
+      body: json.encode({"name":name, "agr":age,"role":"User"})
+    );
+    if(response.statusCode!=201){
+      throw Exception("Failed to add user");
+    }
+  }
 }

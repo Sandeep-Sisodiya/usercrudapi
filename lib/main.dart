@@ -9,7 +9,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -58,7 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 100,
               child: Row(
                 children: [
-
                   IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
                   IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
                 ],
@@ -74,3 +72,46 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+class addUser extends StatelessWidget {
+  final Function fetchUsers;
+  addUser({required this.fetchUsers});
+
+  @override
+  final TextEditingController nameCount = TextEditingController();
+  final TextEditingController age = TextEditingController();
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Add Users'),
+      ),
+      body: Column(
+        children: [
+          TextField(
+            controller: nameCount,
+            decoration: InputDecoration(
+              labelText: 'Name',
+            ),
+          ),
+          TextField(
+            controller: age,
+            decoration: InputDecoration(
+              labelText: 'Age',
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              final name = nameCount.text;
+              final age = int.parse(this.age.text);
+              await UserServices.addUser(name, age);
+              fetchUsers();
+            },
+            child: Text('Add User'),
+          ),
+        ],
+      ),
+    );
+
+  }
+}
+
