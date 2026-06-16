@@ -34,6 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    fetchUsers();
   }
 
   Future<void> fetchUsers() async {
@@ -53,14 +54,22 @@ class _MyHomePageState extends State<MyHomePage> {
             leading: CircleAvatar(child: Icon(Icons.person)),
             title: Text(users[index].name),
             subtitle: Text("${users[index].age}"),
-            trailing: Row(
-              children: [
-                IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
-                IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
-              ],
+            trailing: SizedBox(
+              width: 100,
+              child: Row(
+                children: [
+
+                  IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
+                  IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                ],
+              ),
             ),
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        child: Icon(Icons.add),
       ),
     );
   }

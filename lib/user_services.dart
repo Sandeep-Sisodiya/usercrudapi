@@ -4,7 +4,7 @@ import 'package:usercrudapi/Models/user.dart';
 import 'package:http/http.dart' as http;
 
 class UserServices{
-  static const String baseurl = 'http://10.0.2.2:2000/users';
+  static const String baseurl = 'http://10.138.248.172:2000/users';
 
   static Future<List<User>> fetchUsers() async{
     final response = await http.get(Uri.parse(baseurl));
